@@ -9,6 +9,6 @@ Résultats et description des tests unitaires réalisés avec les codes [fv1d](h
 ## fv2d
 
 Les tests unitaires effectués pour la MHD :
-- [Le tube à choc de Sod magnétique](fv2d/sod-mag/)
+- [Le tube à choc de Sod magnétique](fv2d/sod/)
 - [Le vortex de Orszag-Tang](fv2d/orszag-tang/)
-- [L'instabilité de Kelvin-Helmohltz](fv2d/kelvin-helmholtz-mag/)
+- [L'instabilité de Kelvin-Helmohltz](fv2d/kelvin-helmholtz/)
