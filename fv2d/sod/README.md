@@ -11,7 +11,7 @@ Les états initiaux sont les suivants :
 
 ```math
 $$
-\bold{Q_L} =
+Q_L =
 \begin{pmatrix}
 \rho \\
 v_x \\
@@ -34,7 +34,7 @@ p \\
 \end{pmatrix}
 \text{ et }
 
-\bold{Q_R} =
+Q_R =
 \begin{pmatrix}
 \rho \\
 v_x \\
@@ -57,7 +57,7 @@ p \\
 \end{pmatrix}
 $$
 ```
-où ```math $\{\bold{L}, \bold{R}\}$``` désignent respectivement les états gauche et droit. Nous prenons $\gamma = 5/3$.
+où $\{L, R}$ désignent respectivement les états gauche et droit. Nous prenons $\gamma = 5/3$.
 
 **Résultats**  
 
