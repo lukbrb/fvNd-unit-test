@@ -1,0 +1,519 @@
+<?xml version="1.0" ?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" []>
+<Xdmf Version="2.0">
+  <Domain CollectionType="Temporal">
+    <Grid Name="MainTimeSeries" GridType="Collection" CollectionType="Temporal">
+
+      <Topology Name="Main Topology" TopologyType="2DSMesh" NumberOfElements="4 401"/>
+      <Geometry Name="Main Geometry" GeometryType="X_Y">
+        <DataItem Dimensions="4 401" NumberType="Float" Precision="8" Format="HDF">run.h5:/x</DataItem>
+        <DataItem Dimensions="4 401" NumberType="Float" Precision="8" Format="HDF">run.h5:/y</DataItem>
+      </Geometry>
+     
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.000000" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0000/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0000/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0000/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0000/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0000/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0000/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.005422" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0001/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0001/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0001/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0001/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0001/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0001/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.010226" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0002/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0002/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0002/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0002/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0002/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0002/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.015015" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0003/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0003/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0003/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0003/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0003/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0003/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.020318" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0004/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0004/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0004/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0004/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0004/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0004/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.025076" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0005/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0005/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0005/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0005/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0005/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0005/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.030353" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0006/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0006/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0006/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0006/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0006/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0006/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.035098" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0007/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0007/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0007/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0007/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0007/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0007/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.040369" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0008/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0008/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0008/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0008/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0008/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0008/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.045111" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0009/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0009/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0009/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0009/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0009/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0009/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.050380" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0010/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0010/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0010/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0010/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0010/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0010/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.055122" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0011/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0011/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0011/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0011/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0011/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0011/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.060391" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0012/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0012/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0012/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0012/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0012/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0012/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.065132" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0013/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0013/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0013/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0013/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0013/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0013/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.070401" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0014/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0014/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0014/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0014/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0014/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0014/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.075142" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0015/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0015/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0015/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0015/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0015/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0015/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.080411" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0016/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0016/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0016/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0016/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0016/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0016/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.085152" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0017/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0017/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0017/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0017/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0017/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0017/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.090421" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0018/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0018/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0018/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0018/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0018/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0018/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.095162" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0019/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0019/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0019/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0019/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0019/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0019/prs</DataItem>
+      </Attribute>
+    </Grid>
+   
+    <Grid Name="Cells" GridType="Uniform">
+      <Time TimeType="Single" Value="0.100430" />
+      <Topology Reference="//Topology[@Name='Main Topology']" />
+      <Geometry Reference="//Geometry[@Name='Main Geometry']" />
+      <Attribute Name="rho" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0020/rho</DataItem>
+      </Attribute>
+      <Attribute Name="velocity" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0020/u</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0020/v</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="magnetic_field" AttributeType="Vector" Center="Cell">
+        <DataItem Dimensions="3 400 2" ItemType="Function" Function="JOIN($0, $1)">
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0020/bx</DataItem>
+          <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0020/by</DataItem>
+        </DataItem>
+      </Attribute>
+      <Attribute Name="prs" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="3 400" NumberType="Float" Precision="8" Format="HDF">run.h5:/ite_0020/prs</DataItem>
+      </Attribute>
+    </Grid>
+    
+    </Grid>
+  </Domain>
+</Xdmf>
