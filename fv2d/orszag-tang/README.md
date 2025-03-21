@@ -10,13 +10,15 @@ Pour ce test nous utilisons un domaine carré, en prenant $0 \leq x \leq 1$ et $
 Ce problème est connu pour tester les transitions vers les turbulences supersoniques en MHD 2D. Notamment, ce problème est utilisé pour vérifier la capacité du code à gérer la formation des chocs MHD et, des intéractions choc-choc. Il permet également de donner des estimations quantitatives sur l'impact des monopoles magnétiques sur la solution, donc de tester la condition $\nabla \cdot \emph{B} = 0$.
 
 **Résultats**  
-
 La simulation a été réalisée sur une grille de $256 \times 256$, avec une $CFL=0.5$ et un solveur *HLLD*.
-*lien vers la vidéo*
+
+https://github.com/user-attachments/assets/98c6b75e-d188-4f49-848f-cbc351b975dc
+
 Afin de tester quantitativement nos résultats, on trace deux tranches deux notre domaine à $y=0.4277$ et $y=0.3125$ que l'on compare à la figure 11 de Londrillo et Del Zanna (2000)
+
 ![](./orszag-tang_slice.png)
 
-Notre résultat semble quantitavement correct et qualitativement proche, mais l'on remarque que notre solveur est davantage diffusif que celui d'Athena. Ceci est notamment dû à l'ordre auquel nous résolvons nous travaillons.
+Notre résultat semble quantitavement correct et qualitativement proche, mais l'on remarque que notre solveur est davantage diffusif que celui d'Athena. Ceci est notamment dû à l'ordre auquel nous résolvons.
 
 **Références**  
 - Test du [vortex Orszag-Tang Athena](https://www.astro.princeton.edu/~jstone/Athena/tests/orszag-tang/pagesource.html)
