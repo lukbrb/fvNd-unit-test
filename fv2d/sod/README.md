@@ -10,11 +10,6 @@ L'importance de ce test, qui est un standard pour les codes MHD, réside dans sa
 Les états initiaux sont les suivants :
 
 ```math
-<<<<<<< HEAD
-
-=======
-$$
->>>>>>> 8535ddc52da3e005d5c2ce11c35f8abda2acdfb4
 Q_L =
 \begin{pmatrix}
 \rho \\
@@ -61,11 +56,8 @@ p \\
 \end{pmatrix}
 
 ```
-<<<<<<< HEAD
+
 où $\{L, R\}$ désignent respectivement les états gauche et droit. Nous prenons $\gamma = 5/3$.
-=======
-où $\{L, R}$ désignent respectivement les états gauche et droit. Nous prenons $\gamma = 5/3$.
->>>>>>> 8535ddc52da3e005d5c2ce11c35f8abda2acdfb4
 
 **Résultats**  
 
