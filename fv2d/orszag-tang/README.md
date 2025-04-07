@@ -13,7 +13,10 @@ Ce problème est connu pour tester les transitions vers les turbulences superson
 La simulation a été réalisée sur une grille de $256 \times 256$, avec une $CFL=0.5$ et un solveur *HLLD*.
 
 
-https://github.com/user-attachments/assets/8db1a281-e855-42e1-870b-12a1cc333587
+
+
+https://github.com/user-attachments/assets/e059ed33-e274-43ab-a6a2-88089fd119e2
+
 
 
 Afin de tester quantitativement nos résultats, on trace deux tranches de notre domaine à $y=0.4277$ et $y=0.3125$ que l'on compare à la figure 11 de Londrillo et Del Zanna (2000)
