@@ -4,3 +4,9 @@
 *.xdmf
 *.mov
 imgs/
+.ipynb_checkpoints/
+data/
+*.tab
+athinput.*
+last*
+__pycache__/
