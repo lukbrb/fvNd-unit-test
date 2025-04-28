@@ -38,7 +38,7 @@ class AthenaTabular:
     def __init__(self, filename):
         self._data: np.ndarray = np.loadtxt(filename).T
         self.cells: np.ndarray = self._data[0]
-        self.x1: np.ndarray = self._data[1]
+        self.x: np.ndarray = self._data[1]
         self.rho: np.ndarray = self._data[2]
         self.p: np.ndarray = self._data[3]
         self.u: np.ndarray = self._data[4]
@@ -49,8 +49,44 @@ class AthenaTabular:
         self.Bz: np.ndarray = self._data[9]
     
     def rescale(self):
-        self.x1 = self.x1 / self.x1[0]
+        self.x = self.x + abs(self.x[0])
+
+@dataclass
+class Fv2DH5:
+    """HDF5 format of fv2d output
+    Format is:
+    <KeysViewHDF5 ['bx', 'by', 'bz', 'prs', 'rho', 'u', 'v', 'w']>
+    """
+    def __init__(self, filename, reshape=False):
+        import h5py
+        self._data = h5py.File(filename, 'r')
+        self.x = self._data['x'][:]
+        self.y = self._data['y'][:]
+        Nite = len(self._data.keys()) - 2 # removing x and y
+        ite = self._data[f'ite_{Nite-1:04d}']
+        self.bx = ite['bx'][:]
+        self.by = ite['by'][:]
+        self.bz = ite['bz'][:]
+        self.p = ite['prs'][:]
+        self.rho = ite['rho'][:]
+        self.u = ite['u'][:]
+        self.v = ite['v'][:]
+        self.w = ite['w'][:]
+        if reshape:
+            N_guess = self.rho.shape[1]
+            print("Reshaping to Nx = ", N_guess)
+            self.reshape(Nx=N_guess)
     
+    def reshape(self, Nx):
+        self.x  = self.x[:Nx]
+        self.bx = self.bx[0]#[:Nx]
+        self.by = self.by[0]#[:Nx]
+        self.bz = self.bz[0]#[:Nx]
+        self.p  = self.p[0]#[:Nx]
+        self.rho = self.rho[0]#[:Nx]
+        self.u  = self.u[0]#[:Nx]
+        self.v  = self.v[0]#[:Nx]
+        self.w  = self.w[0]#[:Nx]
 
 @dataclass
 class IniFile:
@@ -146,8 +182,8 @@ class Fv2dCode(Code):
         if destination is not None:
             destination = destination
             destination.mkdir(parents=True, exist_ok=True)
-            shutil.move(f"{outname}.h5", destination / Path(f"{outname}_{inifile.name}.h5"))
-            shutil.move(f"{outname}.xdmf", destination / Path(f"{outname}_{inifile.name}.xdmf"))
+            shutil.move(f"{outname}.h5", destination / Path(f"{outname}_{inifile.stem}.h5"))
+            shutil.move(f"{outname}.xdmf", destination / Path(f"{outname}_{inifile.stem}.xdmf"))
 
 ATHENA_PROBS = {
     "shock_tube": "bw", # brio-wu shock tub   
@@ -212,4 +248,4 @@ class AthenaCode(Code):
         if destination is not None:
             destination.mkdir(parents=True, exist_ok=True)
             for file in Path('.').glob("*.tab"):
-                shutil.move(file, destination / Path(f"{file.name}.tab"))
+                shutil.move(file, destination / Path(f"{file.stem}.tab"))

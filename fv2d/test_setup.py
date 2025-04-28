@@ -1,0 +1,38 @@
+
+from datahandler import Fv2dCode, AthenaCode
+
+code = Fv2dCode("/Users/lucasb/Documents/fv2d/settings/mhd_sod_x.ini", "/Users/lucasb/Documents/fv2d")
+code.ini_file.set_param("mesh", "Nx", 512)
+code.ini_file.set_param("solvers", "riemann_solver", "hlld")
+code.ini_file.set_param("solvers", "CFL", 0.4)
+code.ini_file.set_param("physics", "gamma0", 2.0)
+code.ini_file.write("brio_wu.ini")
+code.compile()
+code.run(inifile="brio_wu.ini")
+
+athena = AthenaCode("/Users/lucasb/Documents/athena/inputs/mhd/athinput.bw", "/Users/lucasb/Documents/athena")
+athena.ini_file.set_param("mesh", "nx1", 512)
+athena.ini_file.set_param("time", "cfl_number", 0.4)
+athena.ini_file.set_param("time", "tlim", 0.2)
+athena.ini_file.write("athinput.bw")
+athena.compile()
+athena.run(inifile="athinput.bw")
+
+code = Fv2dCode("/Users/lucasb/Documents/fv2d/settings/mhd_sod_x.ini", "/Users/lucasb/Documents/fv2d")
+code.ini_file.set_param("mesh", "Nx", 512)
+code.ini_file.set_param("solvers", "riemann_solver", "fivewaves")
+code.ini_file.set_param("solvers", "CFL", 0.4)
+code.ini_file.set_param("physics", "gamma0", 2.0)
+code.ini_file.write("brio_wu_5w.ini")
+code.compile()
+code.run(inifile="brio_wu_5w.ini")
+
+code = Fv2dCode("/Users/lucasb/Documents/fv2d/settings/mhd_sod_x.ini", "/Users/lucasb/Documents/fv2d")
+code.ini_file.set_param("mesh", "Nx", 512)
+code.ini_file.set_param("solvers", "riemann_solver", "fivewaves")
+code.ini_file.set_param("solvers", "div_cleaning", "none")
+code.ini_file.set_param("solvers", "CFL", 0.4)
+code.ini_file.set_param("physics", "gamma0", 2.0)
+code.ini_file.write("brio_wu_5w_noDC.ini")
+code.compile()
+code.run(inifile="brio_wu_5w_noDC.ini")
