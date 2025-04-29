@@ -61,10 +61,17 @@ où $\{L, R\}$ désignent respectivement les états gauche et droit. Nous prenon
 
 **Résultats**  
 
-![](./sod-mag.png)
+![](imgs/sod-mag.png)
+
 On constate sur la figure (tracée à $t=0.1$) qu'on retrouve parmi les ondes se déplaçant vers la gauche ; une onde de raréfaction *rapide* (indiquée $FR$) et une onde composée lente, $SM$. Parmi les ondes se déplaçant vers la droite on observe une discontinuité de contact $C$, une onde de choc lente $SS$ et, une onde de raréfaction rapide $FR$. 
 
-A titre de comparaison, on a tracé nos résulats en utilisant un solveur HLLD et un "Cinq Ondes", que l'on trace avec un résultat de [Athena++](https://github.com/PrincetonUniversity/athena) obtenu en utilisant un solveur HLLD.
-![](./brio_wu.png)
+Pour aller plus loin, on trace nos résulats en utilisant un solveur HLLD et un "Cinq Ondes", que l'on compare avec un résultat de [Athena++](https://github.com/PrincetonUniversity/athena) obtenu en utilisant un solveur HLLD.
+
+![Brio and Wu Test density profile at t=0.2](imgs/brio_wu_rho.png)
+![Brio and Wu Test pressure profile at t=0.2](imgs/brio_wu_p.png)
+![Brio and Wu Test x-velocity profile at t=0.2](imgs/brio_wu_vx.png)
+![Brio and Wu Test y-velocity profile at t=0.2](imgs/brio_wu_vy.png)
+![Brio and Wu Test B_y profile at t=0.2](imgs/brio_wu_by.png)
+
 **Référence**  
 Le test a été effectué en se basant sur [la page Brio et Wu](https://www.astro.princeton.edu/~jstone/Athena/tests/brio-wu/Brio-Wu.html) du code Athena, qui fait référence à l'article originel de Brio et Wu : [Brio, M. & C.C. Wu, "An Upwind Differencing Scheme for the Equations of Ideal Magnetohydrodynamics", Journal of Computational Physics, 75, 400-422 (1988)](https://ui.adsabs.harvard.edu/abs/1988JCoPh..75..400B/abstract)

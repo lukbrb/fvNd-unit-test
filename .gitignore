@@ -3,10 +3,11 @@
 *.h5
 *.xdmf
 *.mov
-imgs/
+# imgs/
 .ipynb_checkpoints/
-data/
+# data/
 *.tab
 athinput.*
 last*
 __pycache__/
+*.ipynb

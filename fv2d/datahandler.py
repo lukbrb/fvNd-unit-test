@@ -64,9 +64,9 @@ class Fv2DH5:
         self.y = self._data['y'][:]
         Nite = len(self._data.keys()) - 2 # removing x and y
         ite = self._data[f'ite_{Nite-1:04d}']
-        self.bx = ite['bx'][:]
-        self.by = ite['by'][:]
-        self.bz = ite['bz'][:]
+        self.Bx = ite['bx'][:]
+        self.By = ite['by'][:]
+        self.Bz = ite['bz'][:]
         self.p = ite['prs'][:]
         self.rho = ite['rho'][:]
         self.u = ite['u'][:]
@@ -79,9 +79,9 @@ class Fv2DH5:
     
     def reshape(self, Nx):
         self.x  = self.x[:Nx]
-        self.bx = self.bx[0]#[:Nx]
-        self.by = self.by[0]#[:Nx]
-        self.bz = self.bz[0]#[:Nx]
+        self.Bx = self.Bx[0]#[:Nx]
+        self.By = self.By[0]#[:Nx]
+        self.Bz = self.Bz[0]#[:Nx]
         self.p  = self.p[0]#[:Nx]
         self.rho = self.rho[0]#[:Nx]
         self.u  = self.u[0]#[:Nx]
