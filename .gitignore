@@ -11,3 +11,4 @@ athinput.*
 last*
 __pycache__/
 *.ipynb
+.obsidian/
