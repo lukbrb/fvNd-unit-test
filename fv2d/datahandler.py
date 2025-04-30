@@ -135,7 +135,7 @@ class IniFile:
 
 class Code(ABC):
     @abstractmethod
-    def compile(self, mhd: bool = False):
+    def compile(self, mhd: bool = True):
         pass
     @abstractmethod
     def run(self, inifile: Path | str, destination: Path | str = Path('.'), *, outname: str = "run"):
@@ -159,8 +159,8 @@ class Fv2dCode(Code):
             ini_file = Path(ini_file)
         self.ini_file = IniFile(ini_file)
         self.base_path = Path(base_path) if isinstance(base_path, str) else base_path
-
-    def compile(self, mhd: bool = False):
+    
+    def compile(self, mhd: bool = True):
         """Compile the fv2d code"""
         command = ["cmake"]
         if mhd:
