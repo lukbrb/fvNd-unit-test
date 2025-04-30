@@ -21,7 +21,6 @@ The contents of this module are:
     - Move the data to the right folder
 """ 
 import configparser
-from abc import ABC, abstractmethod
 from pathlib import Path
 import subprocess
 import shutil
@@ -92,27 +91,26 @@ class Fv2DH5:
 class IniFile:
     """Dataclass to handle the inifiles"""
     def __init__(self, filename: Path | str, athena_fmt=False):
-        self.filename = filename
+        self.filename = Path(filename)
         self.athena_fmt = athena_fmt
         self.config = configparser.ConfigParser()
         self.read()
 
     def __post_init__(self):
-        if isinstance(filename, str):
-            filename = Path(filename)
-        if not filename.exists():
-            raise FileNotFoundError(f"File {filename} does not exist")
+        if isinstance(self.filename, str):
+            self.filename = Path(self.filename)
+        if not self.filename.exists():
+            raise FileNotFoundError(f"File {self.filename} does not exist")
         
     def read(self):
         """ Transform the athena format to a standard ini format"""
-        if self.athena_fmt:
-            with open(self.filename, 'r') as f:
-                data  = f.read()
-            data = data.replace("<", "[")
-            data = data.replace(">", "]")
-            return self.config.read_string(data)
-        else:
+        if not self.athena_fmt:
             return self.config.read(self.filename)
+        with open(self.filename, 'r') as f:
+            data  = f.read()
+        data = data.replace("<", "[")
+        data = data.replace(">", "]")
+        return self.config.read_string(data)
 
     def set_param(self, section, field, value):
         """Set a parameter in the ini file"""
@@ -131,43 +129,54 @@ class IniFile:
             data = data.replace("]", ">")
             with open(destination, 'w') as f:
                 f.write(data)
+    
+    def _get_problem(self):
+        """The problem is written in the comment field 
+            of the Athena ini file.
+        """
+        if not self.athena_fmt:
+            raise ValueError("This is not an Athena ini file")
+        return self.config.get("comment", "configure").split("=")[-1].strip()
 
 
-class Code(ABC):
-    @abstractmethod
-    def compile(self, mhd: bool = True):
-        pass
-    @abstractmethod
-    def run(self, inifile: Path | str, destination: Path | str = Path('.'), *, outname: str = "run"):
-        pass
+def run_command(command, executable=None):
+    try:
+        result = subprocess.run(command, executable=executable, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
+        return result.stdout
+    except subprocess.CalledProcessError as e:
+        print("Error:", e.stderr)
+        return e.stderr
+    
 
-
-class Fv2dCode(Code):
+class Fv2dCode:
     """ Dataclass to handle the fv2d code
     i.e. the ini file, the compilation and the run
     """
-    def __init__(self, ini_file: Path | str, base_path: Path | str):
+    def __init__(self, base_path: Path):
         """
         Parameters
         ----------
-        ini_file : Path | str
-            Path to the ini file
         base_path : Path | str
             Path to the root of the fv2d code
         """
-        if isinstance(ini_file, str):
-            ini_file = Path(ini_file)
-        self.ini_file = IniFile(ini_file)
         self.base_path = Path(base_path) if isinstance(base_path, str) else base_path
     
-    def compile(self, mhd: bool = True):
+    def compile(self, mhd: bool = True, *, parallel: bool = True, clean: bool = False):
         """Compile the fv2d code"""
         command = ["cmake"]
+        if clean:
+            command.append("--clean")
+        command.append("-DCMAKE_BUILD_TYPE=Release")
         if mhd:
             command.append("-DMHD=ON")
         command.append("..")
         subprocess.run(command, cwd=self.base_path / "build")
-        subprocess.run(["make", "-j"], cwd=self.base_path / "build")
+        command = ["make"]
+        if clean:
+            subprocess.run(["make", "clean"], cwd=self.base_path / "build")
+        if parallel:
+            command.append("-j")
+        subprocess.run(command, cwd=self.base_path / "build")
     
     def run(self, inifile: Path | str, destination: Path | str = Path('fv2d_output'), *, outname: str = "run"):
         """Run the fv2d code""" 
@@ -175,43 +184,28 @@ class Fv2dCode(Code):
         if not inifile.exists():
             raise FileNotFoundError(f"File {inifile} does not exist")
         destination = Path(destination) if isinstance(destination, str) else destination
-        command = [self.base_path]  
-        command.append(str(inifile))
-        subprocess.run(command, executable=self.base_path / "build/fv2d")
+        command = [self.base_path, str(inifile)]
+        run_command(command, executable=self.base_path / "build/fv2d")
         # Move the data to the right folder 
-        if destination is not None:
-            destination = destination
-            destination.mkdir(parents=True, exist_ok=True)
-            shutil.move(f"{outname}.h5", destination / Path(f"{outname}_{inifile.stem}.h5"))
-            shutil.move(f"{outname}.xdmf", destination / Path(f"{outname}_{inifile.stem}.xdmf"))
+        destination.mkdir(parents=True, exist_ok=True)
+        shutil.move(f"{outname}.h5", destination / Path(f"{outname}_{inifile.stem}.h5"))
+        shutil.move(f"{outname}.xdmf", destination / Path(f"{outname}_{inifile.stem}.xdmf"))
 
 ATHENA_PROBS = {
     "shock_tube": "bw", # brio-wu shock tub   
 }
 
-class AthenaCode(Code):
-    def __init__(self, ini_file: Path | str, base_path: Path | str):
+class AthenaCode:
+    def __init__(self, base_path: Path | str):
         """
         Parameters
         ----------
-        ini_file : Path | str
-            Path to the ini file
         base_path : Path | str
             Path to the executable
         """
-        if isinstance(ini_file, str):
-            ini_file = Path(ini_file)
-        self.ini_file = IniFile(ini_file, athena_fmt=True)
         self.base_path = Path(base_path) if isinstance(base_path, str) else base_path
-
-    def _get_config(self):
-        """ get the configuration arguments for compilation"""
-        config = self.ini_file.config
-        prob = config.get("comment", "configure")
-        probname = prob.split("=")[-1].strip()
-        return probname
     
-    def compile(self, mhd: bool = True, python_kind="python3"):
+    def compile(self, inifile: IniFile, *, mhd: bool = True, python_kind: str="python3", flux: str = "hlld"):
         """ Note, on MacOS and some Linux versions
         it is necessary to specify python3 instead of python
         Parameters
@@ -221,9 +215,9 @@ class AthenaCode(Code):
         python_kind : str
             Python version to use
         """
-        prob = self._get_config()
+        prob = inifile._get_problem()
         assert prob in ATHENA_PROBS.keys(), f"Problem {prob} not in {ATHENA_PROBS.keys()}"
-        command = [python_kind, "configure.py", "--prob", prob]
+        command = [python_kind, "configure.py", "--prob", prob, "--flux", flux]
         if mhd:
             command.append("-b")
         subprocess.run(command, cwd=self.base_path)
@@ -238,13 +232,10 @@ class AthenaCode(Code):
         if not inifile.exists():
             raise FileNotFoundError(f"File {inifile} does not exist")
         destination = Path(destination) if isinstance(destination, str) else destination
-        # command = [self.base_path) / "bin/athena"]
-        command = [self.base_path]
-        command.append("-i")     
-        command.append(str(inifile))
-        subprocess.run(command, executable=self.base_path / "bin/athena")
+        command = [self.base_path, "-i", str(inifile)]
+        run_command(command, executable=self.base_path / "bin/athena")
         # Move the data to the right folder
-         
+
         if destination is not None:
             destination.mkdir(parents=True, exist_ok=True)
             for file in Path('.').glob("*.tab"):
