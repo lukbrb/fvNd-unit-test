@@ -10,9 +10,10 @@ Pour ce test nous utilisons un domaine carré, en prenant $0 \leq x \leq 1$ et $
 Ce problème est connu pour tester les transitions vers les turbulences supersoniques en MHD 2D. Notamment, ce problème est utilisé pour vérifier la capacité du code à gérer la formation des chocs MHD et, des intéractions choc-choc. Il permet également de donner des estimations quantitatives sur l'impact des monopoles magnétiques sur la solution, donc de tester la condition $\nabla \cdot B = 0$.
 
 **Résultats**  
-La simulation a été réalisée sur une grille de $256 \times 256$, avec une $CFL=0.5$ et un solveur *HLLD*.
+La simulation a été réalisée sur une grille de $512 \times 512$, avec une $CFL=0.1$ et un solveur *HLLD* combiné à un nettoyage de divergence hyperbolique.
 
-<https://github.com/user-attachments/assets/e059ed33-e274-43ab-a6a2-88089fd119e2>
+<https://github.com/user-attachments/assets/e611f5ae-de82-41ce-a5d2-801565064a94>
+
 
 Afin de tester quantitativement nos résultats, on trace deux tranches de notre domaine à $y=0.4277$ et $y=0.3125$ que l'on compare à la figure 11 de Londrillo et Del Zanna (2000)
 
@@ -23,6 +24,12 @@ Notre résultat semble quantitavement correct et qualitativement proche, mais l'
 Nous avons réalisé d'autres simulations afin de tester nos solveurs :
 
 - Solveur dit "Cinq Ondes", avec une grille de $512\times512$, une $CFL=0.1$ et sans nettoyage de la divergence (divergence cleaning).
+
+<https://github.com/user-attachments/assets/5b1ec3e7-21f0-4b14-b717-dfa7ae0d8431>
+
+- Solveur Cinq Ondes, avec la même grille et $CFL=0.1$, avec nettoyage hyperbolique de la divergence
+
+<https://github.com/user-attachments/assets/4cff577b-32dd-4bba-b4e1-751cf87c57eb>
 
 TODO:
 Ajouter une analyse des résulats davantage qualitative :
