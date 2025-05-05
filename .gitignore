@@ -10,8 +10,8 @@
 athinput.*
 last*
 __pycache__/
-*.ipynb
 .obsidian/
 .fvNd-unit-test/
 ignore/
 OT_*
+
