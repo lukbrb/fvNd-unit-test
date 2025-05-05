@@ -12,20 +12,26 @@ Ce problème est connu pour tester les transitions vers les turbulences superson
 **Résultats**  
 La simulation a été réalisée sur une grille de $256 \times 256$, avec une $CFL=0.5$ et un solveur *HLLD*.
 
-
-
-
-https://github.com/user-attachments/assets/e059ed33-e274-43ab-a6a2-88089fd119e2
-
-
+<https://github.com/user-attachments/assets/e059ed33-e274-43ab-a6a2-88089fd119e2>
 
 Afin de tester quantitativement nos résultats, on trace deux tranches de notre domaine à $y=0.4277$ et $y=0.3125$ que l'on compare à la figure 11 de Londrillo et Del Zanna (2000)
 
-![](./orszag-tang_slice.png)
+![Slices along the domain](./orszag-tang_slice.png)
 
-Notre résultat semble quantitavement correct et qualitativement proche, mais l'on remarque que notre solveur est davantage diffusif que celui d'Athena. Ceci est notamment dû à l'ordre auquel nous résolvons.
+Notre résultat semble quantitavement correct et qualitativement proche, mais l'on remarque que notre solveur est davantage diffusif que celui d'Athena. Ceci est notamment dû à l'ordre auquel nous résolvons (2 pour nous, 3 pour Athena).
+
+Nous avons réalisé d'autres simulations afin de tester nos solveurs :
+
+- Solveur dit "Cinq Ondes", avec une grille de $512\times512$, une $CFL=0.1$ et sans nettoyage de la divergence (divergence cleaning).
+
+TODO:
+Ajouter une analyse des résulats davantage qualitative :
+
+1. Tracé du divB
+2. Tracé comparatif des tranches du domaine
 
 **Références**  
+
 - Test du [vortex Orszag-Tang Athena](https://www.astro.princeton.edu/~jstone/Athena/tests/orszag-tang/pagesource.html)
 - [Orszag, S.A., Tang, C.-M., 1979. Small-scale structure of two-dimensional magnetohydrodynamic turbulence. Journal of Fluid Mechanics 90, 129–143.](https://doi.org/10.1017/S002211207900210X)
 - [Londrillo, P., Zanna, L.D., 2000. High-Order Upwind Schemes forMultidimensional Magnetohydrodynamics. ApJ 530, 508.](https://doi.org/10.1086/308344)
