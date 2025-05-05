@@ -170,13 +170,13 @@ class Fv2dCode:
         if mhd:
             command.append("-DMHD=ON")
         command.append("..")
-        subprocess.run(command, cwd=self.base_path / "build")
+        subprocess.run(command, cwd=self.base_path / "build", stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
         command = ["make"]
         if clean:
-            subprocess.run(["make", "clean"], cwd=self.base_path / "build")
+            subprocess.run(["make", "clean"], cwd=self.base_path / "build", stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
         if parallel:
             command.append("-j")
-        subprocess.run(command, cwd=self.base_path / "build")
+        subprocess.run(command, cwd=self.base_path / "build", stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
     
     def run(self, inifile: Path | str, destination: Path | str = Path('fv2d_output'), *, outname: str = "run"):
         """Run the fv2d code""" 
@@ -220,11 +220,11 @@ class AthenaCode:
         command = [python_kind, "configure.py", "--prob", prob, "--flux", flux]
         if mhd:
             command.append("-b")
-        subprocess.run(command, cwd=self.base_path)
+        subprocess.run(command, cwd=self.base_path, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
         command = ["make", "clean"]
-        subprocess.run(command, cwd=self.base_path)
+        subprocess.run(command, cwd=self.base_path, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
         command = ["make", "-j"]
-        subprocess.run(command, cwd=self.base_path)
+        subprocess.run(command, cwd=self.base_path, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
     
     def run(self, inifile: Path | str, destination: Path | str = Path('athena_output')):
         """Run the Athena code""" 

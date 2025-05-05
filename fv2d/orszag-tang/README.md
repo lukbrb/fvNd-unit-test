@@ -14,7 +14,6 @@ La simulation a été réalisée sur une grille de $512 \times 512$, avec une $C
 
 <https://github.com/user-attachments/assets/e611f5ae-de82-41ce-a5d2-801565064a94>
 
-
 Afin de tester quantitativement nos résultats, on trace deux tranches de notre domaine à $y=0.4277$ et $y=0.3125$ que l'on compare à la figure 11 de Londrillo et Del Zanna (2000)
 
 ![Slices along the domain](./orszag-tang_slice.png)
