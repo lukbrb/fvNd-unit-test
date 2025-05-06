@@ -190,9 +190,6 @@ class Fv2dCode:
         shutil.move(f"{outname}.h5", destination / Path(f"{outname}_{inifile.stem}.h5"))
         shutil.move(f"{outname}.xdmf", destination / Path(f"{outname}_{inifile.stem}.xdmf"))
 
-ATHENA_PROBS = {
-    "shock_tube": "bw", # brio-wu shock tub   
-}
 
 class AthenaCode:
     def __init__(self, base_path: Path | str):
@@ -215,7 +212,6 @@ class AthenaCode:
             Python version to use
         """
         prob = inifile._get_problem()
-        assert prob in ATHENA_PROBS.keys(), f"Problem {prob} not in {ATHENA_PROBS.keys()}"
         command = [python_kind, "configure.py", "--prob", prob, "--flux", flux]
         if mhd:
             command.append("-b")
