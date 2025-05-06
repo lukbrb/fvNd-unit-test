@@ -73,7 +73,6 @@ class Fv2DH5:
         self.w = ite['w'][:]
         if reshape:
             N_guess = self.rho.shape[1]
-            print("Reshaping to Nx = ", N_guess)
             self.reshape(Nx=N_guess)
     
     def reshape(self, Nx):
