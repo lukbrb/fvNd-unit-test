@@ -14,4 +14,6 @@ __pycache__/
 .fvNd-unit-test/
 ignore/
 OT_*
+*.log
+*.wiki
 
