@@ -26,6 +26,7 @@ import subprocess
 import shutil
 from dataclasses import dataclass
 import numpy as np
+import h5py
 
 
 @dataclass
@@ -50,41 +51,91 @@ class AthenaTabular:
     def rescale(self):
         self.x = self.x + abs(self.x[0])
 
-@dataclass
-class Fv2DH5:
-    """HDF5 format of fv2d output
-    Format is:
-    <KeysViewHDF5 ['bx', 'by', 'bz', 'prs', 'rho', 'u', 'v', 'w']>
+
+class Fv2dH51D:
     """
-    def __init__(self, filename, reshape=False):
-        import h5py
+    1D HDF5 format of fv2d output
+    """
+    def __init__(self, filename, *, mhd=True, reshape=False):
         self._data = h5py.File(filename, 'r')
+        self.mhd = mhd
         self.x = self._data['x'][:]
         self.y = self._data['y'][:]
+        
         Nite = len(self._data.keys()) - 2 # removing x and y
         ite = self._data[f'ite_{Nite-1:04d}']
-        self.Bx = ite['bx'][:]
-        self.By = ite['by'][:]
-        self.Bz = ite['bz'][:]
         self.p = ite['prs'][:]
         self.rho = ite['rho'][:]
         self.u = ite['u'][:]
         self.v = ite['v'][:]
         self.w = ite['w'][:]
-        if reshape:
+        if mhd:
+            self.Bx = ite['bx'][:]
+            self.By = ite['by'][:]
+            self.Bz = ite['bz'][:]
+            self.divB = ite['divB'][:]
+        if reshape:        
             N_guess = self.rho.shape[1]
-            self.reshape(Nx=N_guess)
-    
+            self.reshape(Nx=N_guess)     
+
     def reshape(self, Nx):
         self.x  = self.x[:Nx]
-        self.Bx = self.Bx[0]#[:Nx]
-        self.By = self.By[0]#[:Nx]
-        self.Bz = self.Bz[0]#[:Nx]
-        self.p  = self.p[0]#[:Nx]
-        self.rho = self.rho[0]#[:Nx]
-        self.u  = self.u[0]#[:Nx]
-        self.v  = self.v[0]#[:Nx]
-        self.w  = self.w[0]#[:Nx]
+        if self.mhd:
+            self.Bx = self.Bx[0]
+            self.By = self.By[0]
+            self.Bz = self.Bz[0]
+            self.divB = self.divB[0]
+        self.p  = self.p[0]
+        self.rho = self.rho[0]
+        self.u  = self.u[0]
+        self.v  = self.v[0]
+        self.w  = self.w[0]
+
+@dataclass
+class Fv2dH52D:
+    """
+    2D HDF5 format of fv2d output
+    """
+    def __init__(self, filename, *, mhd=True):
+        self._data = h5py.File(filename, 'r')
+        self.mhd = mhd
+        self.x = self._data['x'][:]
+        self.y = self._data['y'][:]
+    
+    def get_iteration(self, Nite: int):
+        """Get a specific iteration of the data"""
+        if Nite < 0:
+            Nite = len(self._data.keys()) - 2
+            raise ValueError("No iteration found, Nite is negative, must be in [0, {Nite}]")
+        ite = self._data[f'ite_{Nite:04d}']
+        if self.mhd:
+            self.Bx = ite['bx'][:]
+            self.By = ite['by'][:]
+            self.Bz = ite['bz'][:]
+            self.divB = ite['divB'][:]
+        self.p = ite['prs'][:]
+        self.rho = ite['rho'][:]
+        self.u = ite['u'][:]
+        self.v = ite['v'][:]
+        self.w = ite['w'][:]
+
+@dataclass
+class Fv2DH5:
+    """HDF5 format of fv2d output
+    Format is:
+    <KeysViewHDF5 ['bx', 'by', 'bz', 'divB', 'prs', 'rho', 'u', 'v', 'w']>
+    """
+    def __new__(cls, filename, dim:int=1, *, mhd=True, reshape=False):
+        # TODO: Donner la possibilité de choisir le pas de temps, 
+        # et ajouter une méthode pour obtenr le dernier pas de temps.
+        # Nécessitera de revoir les autres notebooks
+        if dim == 1:
+            return Fv2dH51D(filename, mhd=mhd, reshape=reshape)
+        elif dim == 2:
+            return Fv2dH52D(filename, mhd=mhd)
+        else:
+            raise ValueError("dim must be 1 or 2. No other dimension is supported at the moment.")
+        
 
 @dataclass
 class IniFile:
